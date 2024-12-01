@@ -13,15 +13,9 @@ This is a simple chrome extension that allows you to save papers to Notion.
 
 Create Notion Database which has the following properties:
 
-| Property | Type         |
-|----------|--------------|
-| Title    | Title        |
-| Authors  | Multi-select |
-| Year     | Number       |
-| Journal  | Select       |
-| Volume   | Number       |
-| DOI      | URL          |
-| PDF      | File         |
+| Title    | Authors      | Year  | Journal | Volume | DOI  | PDF  |
+|----------|--------------|-------|---------|--------|------|------|
+| Title    | Multi-select | Number| Select  | Number | URL  | File |
 
 Create a new integration in Notion and get the token_v2 value.
 
