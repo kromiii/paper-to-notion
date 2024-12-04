@@ -2,6 +2,8 @@
 
 This is a simple chrome extension that allows you to save papers to Notion.
 
+[Demo Movie](https://youtu.be/Pg0eNnxyVTI?si=90uDpYZuJM1nnmnt)
+
 ## Usage
 
 1. Find the DOI of the paper you want to save.
