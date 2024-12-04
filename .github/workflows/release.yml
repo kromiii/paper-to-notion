@@ -35,12 +35,16 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Strip 'v' prefix from version
+        id: strip_v
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+  
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .output/paper2notion-${{ github.ref_name#v }}-chrome.zip
-          asset_name: paper2notion-${{ github.ref_name#v }}-chrome.zip
+          asset_path: .output/paper2notion-${{ env.version }}-chrome.zip
+          asset_name: paper2notion-${{ env.version }}-chrome.zip
           asset_content_type: application/zip
