@@ -4,6 +4,7 @@ import { defineConfig } from 'wxt';
 export default defineConfig({
   extensionApi: 'chrome',
   manifest: {
+    name: "Paper to Notion",
     permissions: ['storage'],
     host_permissions: ['https://api.notion.com/*', 'https://api.crossref.org/*']
   },
