@@ -99,11 +99,12 @@ export function setupEventListeners() {
             })),
           },
           Year: {
-            number: data.message["published-print"]["date-parts"][0][0],
+            number: data.message["published-print"]?.["date-parts"]?.[0]?.[0] ||
+                   data.message["published-online"]?.["date-parts"]?.[0]?.[0] || null,
           },
           Journal: {
             select: {
-              name: data.message["short-container-title"][0],
+              name: data.message["short-container-title"]?.[0] || '',
             },
           },
           Volume: {
@@ -112,10 +113,7 @@ export function setupEventListeners() {
           DOI: {
             url: `https://doi.org/${data.message.DOI}`,
           },
-          PDF: {
-            files: [],
-          },
-        },
+        }
       }),
     });
 
