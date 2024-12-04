@@ -1,4 +1,4 @@
-# p2n: Paper to Notion
+# Paper to Notion
 
 This is a simple chrome extension that allows you to save papers to Notion.
 
