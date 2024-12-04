@@ -24,17 +24,6 @@ jobs:
       - name: Build and zip
         run: npm run zip
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
       - name: Strip 'v' prefix from version
         id: strip_v
         run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
