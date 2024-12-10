@@ -24,6 +24,17 @@ jobs:
       - name: Build and zip
         run: npm run zip
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
       - name: Strip 'v' prefix from version
         id: strip_v
         run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
@@ -33,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: .output/paper2notion-${{ env.version }}-chrome.zip
           asset_name: paper2notion-${{ env.version }}-chrome.zip
           asset_content_type: application/zip
