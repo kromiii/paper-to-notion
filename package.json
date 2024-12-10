@@ -1,6 +1,6 @@
 {
   "name": "paper2notion",
-  "description": "extract metadata from doi and export it to notion",
+  "description": "A Chrome extension that imports paper metadata from Crossref to Notion using a DOI.",
   "private": true,
   "version": "0.1.7",
   "type": "module",
