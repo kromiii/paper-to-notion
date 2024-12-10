@@ -2,6 +2,8 @@
 
 This is a simple chrome extension that allows you to save papers to Notion.
 
+[Chrome Extension](https://chromewebstore.google.com/detail/paper-to-notion/edollpfjfbfbginhdlajipmomjmpalhb?authuser=0&hl=ja)
+
 [Demo Movie](https://youtu.be/Pg0eNnxyVTI?si=90uDpYZuJM1nnmnt)
 
 ## Usage
