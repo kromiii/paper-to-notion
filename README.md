@@ -23,7 +23,11 @@ Create Notion Database which has the following properties:
 
 Create an integration for this app and get the token value.
 
-Input the token and the [database ID](https://developers.notion.com/reference/retrieve-a-database) to the extension options.
+* Generate an integration token: https://www.notion.com/help/create-integrations-with-the-notion-api
+* Set the integration token to the page: https://www.notion.com/help/add-and-manage-connections-with-the-api
+* Get the database ID: https://developers.notion.com/reference/retrieve-a-database
+
+Input the token and the database ID to the extension options.
 
 ![](assets/image.png)
 
