@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.1.9](https://github.com/kromiii/paper-to-notion/compare/v0.1.8...v0.1.9) - 2025-01-22
+- Bump vite from 6.0.1 to 6.0.11 by @dependabot in https://github.com/kromiii/paper-to-notion/pull/13
+
 ## [v0.1.8](https://github.com/kromiii/paper-to-notion/compare/v0.1.7...v0.1.8) - 2024-12-10
 
 ## [v0.1.7](https://github.com/kromiii/paper-to-notion/compare/v0.1.6...v0.1.7) - 2024-12-04
