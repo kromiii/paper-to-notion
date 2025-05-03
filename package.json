@@ -2,7 +2,7 @@
   "name": "paper2notion",
   "description": "A Chrome extension that imports paper metadata from Crossref to Notion using a DOI.",
   "private": true,
-  "version": "0.1.10",
+  "version": "0.1.11",
   "type": "module",
   "scripts": {
     "dev": "wxt",
