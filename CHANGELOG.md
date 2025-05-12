@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.12](https://github.com/kromiii/paper-to-notion/compare/v0.1.11...v0.1.12) - 2025-05-12
+- Bump esbuild and wxt by @dependabot in https://github.com/kromiii/paper-to-notion/pull/20
+- Fix issues 22 by @kromiii in https://github.com/kromiii/paper-to-notion/pull/23
+
 ## [v0.1.11](https://github.com/kromiii/paper-to-notion/compare/v0.1.10...v0.1.11) - 2025-05-03
 - Bump vite from 6.0.11 to 6.3.4 by @dependabot in https://github.com/kromiii/paper-to-notion/pull/18
 
