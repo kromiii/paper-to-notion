@@ -74,51 +74,60 @@ export function setupEventListeners() {
     const notionApiKey = await getNotionApiKey();
     const notionDatabaseId = await getNotionDatabaseId();
     setMessage("Saving data to Notion...", false);
-    const notionResponse = await fetch("https://api.notion.com/v1/pages", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${notionApiKey}`,
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28",
-      },
-      body: JSON.stringify({
-        parent: { database_id: notionDatabaseId },
-        properties: {
-          Title: {
-            title: [
-              {
-                text: {
-                  content: data.message.title[0],
+    try {
+      const notionResponse = await fetch("https://api.notion.com/v1/pages", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${notionApiKey}`,
+          "Content-Type": "application/json",
+          "Notion-Version": "2022-06-28",
+        },
+        body: JSON.stringify({
+          parent: { database_id: notionDatabaseId },
+          properties: {
+            Title: {
+              title: [
+                {
+                  text: {
+                    content: data.message.title?.[0] || "Untitled",
+                  },
                 },
-              },
-            ],
-          },
-          Authors: {
-            multi_select: data.message.author.map((author: any) => ({
-              name: `${author.given} ${author.family}`,
-            })),
-          },
-          Year: {
-            number: data.message["published-print"]?.["date-parts"]?.[0]?.[0] ||
-                   data.message["published-online"]?.["date-parts"]?.[0]?.[0] || null,
-          },
-          Journal: {
-            select: {
-              name: data.message["short-container-title"]?.[0] || '',
+              ],
             },
-          },
-          Volume: {
-            number: parseInt(data.message.volume),
-          },
-          DOI: {
-            url: `https://doi.org/${data.message.DOI}`,
-          },
-        }
-      }),
-    });
+            Authors: {
+              multi_select: data.message.author?.map((author: any) => ({
+                name: `${author.given} ${author.family}`.substring(0, 100), // Notionの制限に対応
+              })) || [],
+            },
+            Year: {
+              number: data.message["published-print"]?.["date-parts"]?.[0]?.[0] ||
+                data.message["published-online"]?.["date-parts"]?.[0]?.[0] || null,
+            },
+            Journal: {
+              select: {
+                name: data.message["container-title"]?.[0] ||
+                  data.message["short-container-title"]?.[0] ||
+                  "Unknown Journal",
+              },
+            },
+            Volume: {
+              number: data.message.volume ? parseInt(data.message.volume) : null,
+            },
+            DOI: {
+              url: `https://doi.org/${data.message.DOI}`,
+            },
+          }
+        }),
+      });
 
-    if (!notionResponse.ok) {
-      throw new Error("Failed to save data to Notion");
+      if (!notionResponse.ok) {
+        const errorData = await notionResponse.json();
+        throw new Error(`Notion API error: ${JSON.stringify(errorData)}`);
+      }
+    } catch (error: unknown) {
+      console.error("Error details:", error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to save data to Notion: ${errorMessage}`);
     }
   }
 }
